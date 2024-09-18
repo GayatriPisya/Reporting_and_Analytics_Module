@@ -1,24 +1,15 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HighchartsChartModule } from 'highcharts-angular';
-import { AnalyticsComponent } from './analytics/analytics.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RealtimeChartComponent } from './realtime-chart/realtime-chart.component';
+import { HistoricalChartComponent } from './historical-chart/historical-chart.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AnalyticsComponent
-  ],
-  imports: [
-    BrowserModule,
-    HighchartsChartModule ,
-    AppRoutingModule
-  ],
-  providers: [
-    provideClientHydration()
-  ],
+  declarations: [AppComponent, RealtimeChartComponent, HistoricalChartComponent],
+  imports: [BrowserModule, HighchartsChartModule, HttpClientModule],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
