@@ -9,7 +9,7 @@ import { WebSocketService } from '../services/web-socket.service';
 })
 export class RealtimeChartComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
-  chartOptions: Highcharts.Options;
+  chartOptions: Highcharts.Options | undefined;
   chart: Highcharts.Chart | undefined;
 
   constructor(private webSocketService: WebSocketService) {}
@@ -31,7 +31,8 @@ export class RealtimeChartComponent implements OnInit {
       },
       series: [{
         name: 'Live Data',
-        data: []
+        type: 'line', // Specify the type of series
+        data: [] // Initialize with an empty array
       }]
     };
   }

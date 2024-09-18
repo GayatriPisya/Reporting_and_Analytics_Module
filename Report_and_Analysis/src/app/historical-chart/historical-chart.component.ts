@@ -9,7 +9,7 @@ import { DataService } from '../services/data.service';
 })
 export class HistoricalChartComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
-  chartOptions: Highcharts.Options;
+  chartOptions: Highcharts.Options | undefined;
 
   constructor(private dataService: DataService) {}
 
@@ -29,7 +29,8 @@ export class HistoricalChartComponent implements OnInit {
       },
       series: [{
         name: 'Historical Data',
-        data: data
+        type: 'line', // Specify the type of series
+        data: data // Provide the actual data
       }]
     };
   }
