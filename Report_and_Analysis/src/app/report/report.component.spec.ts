@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RealtimeChartComponent } from './realtime-chart.component';
+import { ReportComponent } from './report.component';
 
-describe('RealtimeChartComponent', () => {
-  let component: RealtimeChartComponent;
-  let fixture: ComponentFixture<RealtimeChartComponent>;
+describe('ReportComponent', () => {
+  let component: ReportComponent;
+  let fixture: ComponentFixture<ReportComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RealtimeChartComponent]
+      declarations: [ReportComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RealtimeChartComponent);
+    fixture = TestBed.createComponent(ReportComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
