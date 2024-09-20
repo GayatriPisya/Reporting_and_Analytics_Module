@@ -12,10 +12,8 @@ public class MonthlyUser {
     private String month;
     private int count;
 
-    // No-argument constructor (required by JPA)
     public MonthlyUser() {}
 
-    // Getters and setters
     public String getMonth() {
         return month;
     }
