@@ -10,7 +10,7 @@ public class MonthlyUser {
 
     @Id
     private String month;
-    private int count;
+    private Integer count;
 
     public MonthlyUser() {}
 
@@ -22,11 +22,11 @@ public class MonthlyUser {
         this.month = month;
     }
 
-    public int getCount() {
+    public Integer getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(Integer count) {
         this.count = count;
     }
 }
