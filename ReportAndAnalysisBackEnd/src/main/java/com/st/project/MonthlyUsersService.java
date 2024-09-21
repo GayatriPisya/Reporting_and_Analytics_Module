@@ -10,7 +10,7 @@ public class MonthlyUsersService {
     @Autowired
     private MonthlyUsersRepository repository;
 
-    public List<MonthlyUser> getMonthlyUsers() {
+    public List<MonthlyUser> getAllMonthlyUsers() {
         return repository.findAll();
     }
 }

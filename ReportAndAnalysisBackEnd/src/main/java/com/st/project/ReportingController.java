@@ -12,11 +12,12 @@ import java.util.List;
 public class ReportingController {
 
     @Autowired
-    private LoginAnalyticsService loginAnalyticsService;
+    private MonthlyUsersService monthlyUsersService;
 
-    @GetMapping("/logins")
-    public ResponseEntity<List<UserLogin>> getLogins() {
-        List<UserLogin> logins = loginAnalyticsService.getLogins();
-        return ResponseEntity.ok(logins);
+    @GetMapping("/monthly-users")
+    public ResponseEntity<List<MonthlyUser>> getMonthlyUsers() {
+        List<MonthlyUser> monthlyUsers = monthlyUsersService.getAllMonthlyUsers();
+        return ResponseEntity.ok(monthlyUsers);
     }
 }
+
