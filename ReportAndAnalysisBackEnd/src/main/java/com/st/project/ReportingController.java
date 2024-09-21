@@ -20,4 +20,3 @@ public class ReportingController {
         return ResponseEntity.ok(monthlyUsers);
     }
 }
-
