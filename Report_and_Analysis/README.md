@@ -1,27 +1,56 @@
-# ReportAndAnalysis
+# Reporting and Analytics Module
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3.
+## Project Overview
 
-## Development server
+The **Reporting and Analytics Module** is a part of the larger "Parking Space Finder and e-Parking Challan Generate System" project. This module is responsible for displaying monthly user data, visualized through charts, and offers reporting and analysis features.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Key Features
 
-## Code scaffolding
+- **Monthly User Growth Reports**: Displays the growth of website users month by month.
+- **Interactive Charts**: Renders bar charts using **Highcharts** to visually represent data.
+- **Backend Integration**: Fetches data from a **MySQL** database using **Spring Boot**.
+- **Responsive Design**: The module adapts to different screen sizes, offering a user-friendly interface on both desktop and mobile.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Table of Contents
 
-## Build
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [Project Structure](#project-structure)
+- [API Endpoints](#api-endpoints)
+- [Features in Detail](#features-in-detail)
+- [Screenshots](#screenshots)
+- [Contributing](#contributing)
+- [License](#license)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Technologies Used
 
-## Running unit tests
+### Frontend:
+- **Angular** (v12+)
+- **Highcharts** (v10.3.3)
+- **TypeScript**
+- **CSS** for custom styles
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Backend:
+- **Spring Boot** (v2.7.3)
+- **MySQL**: Database to store monthly user data
+- **REST APIs**: For communication between the frontend and backend
 
-## Running end-to-end tests
+## Installation
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Prerequisites
 
-## Further help
+Make sure you have the following installed on your machine:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Node.js** (v14+)
+- **Angular CLI** (v12+)
+- **Java** (v11+)
+- **Maven** (for building Spring Boot projects)
+- **MySQL** (for the database)
+
+### Backend Setup
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/reporting-and-analytics.git
+   cd reporting-and-analytics
