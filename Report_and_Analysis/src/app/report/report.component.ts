@@ -8,7 +8,7 @@ import * as Highcharts from 'highcharts';
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
-  Highcharts: typeof Highcharts = Highcharts;
+  Highcharts: typeof Highcharts = Highcharts;  // Ensure this line is present
   chartOptions: Highcharts.Options = {};
   monthlyUsers: MonthlyUser[] = [];
   errorMessage: string = '';
@@ -39,9 +39,28 @@ export class ReportComponent implements OnInit {
     this.chartOptions = {
       chart: { type: 'column' },
       title: { text: 'Monthly User Growth' },
-      xAxis: { categories: categories, title: { text: 'Month' } },
-      yAxis: { min: 0, title: { text: 'Users' } },
-      series: [{ name: 'Users', type: 'column', data: data }]
+      xAxis: {
+        categories: categories,
+        title: { text: 'Month' }
+      },
+      yAxis: {
+        min: 0,
+        title: { text: 'Users' }
+      },
+      series: [{
+        name: 'Users',
+        type: 'column',
+        data: data
+      }],
+      tooltip: {
+        valueSuffix: ' users'
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
+      }
     };
   }
 }

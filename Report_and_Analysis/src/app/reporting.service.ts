@@ -12,7 +12,7 @@ export interface MonthlyUser {
   providedIn: 'root'
 })
 export class ReportingService {
-  private apiUrl = 'http://localhost:8080/api/monthly-users';
+  private apiUrl = 'http://localhost:8080/api/monthly-user'; // Your backend endpoint
 
   constructor(private http: HttpClient) {}
 
