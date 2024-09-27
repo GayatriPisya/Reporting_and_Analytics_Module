@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ReportingService, MonthlyUser } from '../reporting.service';
 import * as Highcharts from 'highcharts';
+import { ReportingService, MonthlyUser } from '../reporting.service';
 
 @Component({
   selector: 'app-historical-chart',
@@ -9,72 +9,53 @@ import * as Highcharts from 'highcharts';
 })
 export class HistoricalChartComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
-  chartOptions: Highcharts.Options = {};
-  monthlyUsers: MonthlyUser[] = []; // To store the retrieved monthly users
+  chartOptions: Highcharts.Options = {}; // Initialize as empty
+  monthlyUserData: MonthlyUser[] = []; // Holds the fetched data
 
-  constructor(private reportingService: ReportingService) {}
+  constructor(private reportingService: ReportingService) { }
 
   ngOnInit(): void {
-    this.fetchHistoricalData();
-  }
-
-  fetchHistoricalData(): void {
-    // Replace with your actual API endpoint to fetch historical user data
-    this.reportingService.getMonthlyUsers().subscribe(
-      (data: MonthlyUser[]) => {
-        this.monthlyUsers = this.sortMonths(data);
+    // Fetch data when component initializes
+    this.reportingService.getMonthlyUsers().subscribe({
+      next: (data: MonthlyUser[]) => {
+        console.log('Data fetched from backend: ', data); // Add this to check the response
+        this.monthlyUserData = data;
         this.initializeChart();
       },
-      (error) => {
-        console.error('There was an error!', error);
+      error: (error) => {
+        console.error('Error fetching data', error);
       }
-    );
-  }
-
-  sortMonths(data: MonthlyUser[]): MonthlyUser[] {
-    const monthOrder = [
-      'January', 'February', 'March', 'April', 'May', 'June', 
-      'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-    
-    return data.sort((a, b) => {
-      return monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month);
     });
   }
 
   initializeChart(): void {
-    const categories = this.monthlyUsers.map(user => user.month); // e.g., ['January', 'February']
-    const data = this.monthlyUsers.map(user => user.count); // e.g., [5, 10]
+    const months = this.monthlyUserData.map(item => item.month); // Extract month names
+    const userCounts = this.monthlyUserData.map(item => item.count); // Extract user counts
 
     this.chartOptions = {
       chart: {
-        type: 'column' // Set to column for bar graph
+        type: 'column'
       },
       title: {
-        text: 'Historical User Growth'
+        text: 'Monthly User Growth'
       },
       xAxis: {
-        categories: categories,
-        title: { text: 'Month' }
+        categories: months, // Use months from the fetched data
+        title: {
+          text: 'Month'
+        }
       },
       yAxis: {
         min: 0,
-        title: { text: 'Users' }
+        title: {
+          text: 'Number of Users'
+        }
       },
       series: [{
         name: 'Users',
-        type: 'column', // Column chart type
-        data: data
-      }],
-      tooltip: {
-        valueSuffix: ' users'
-      },
-      plotOptions: {
-        column: {
-          pointPadding: 0.2,
-          borderWidth: 0
-        }
-      }
+        type: 'column',
+        data: userCounts // Use user counts from the fetched data
+      }]
     };
   }
 }
