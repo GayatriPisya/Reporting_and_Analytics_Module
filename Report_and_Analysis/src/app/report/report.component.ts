@@ -1,4 +1,3 @@
-// src/app/report/report.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ReportingService, MonthlyUser } from '../reporting.service';
 import * as Highcharts from 'highcharts';
