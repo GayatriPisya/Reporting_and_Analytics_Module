@@ -1,3 +1,4 @@
+// src/app/report/report.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ReportingService, MonthlyUser } from '../reporting.service';
 import * as Highcharts from 'highcharts';
@@ -8,10 +9,9 @@ import * as Highcharts from 'highcharts';
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
-  Highcharts: typeof Highcharts = Highcharts;  // Ensure this line is present
+  Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options = {};
   monthlyUsers: MonthlyUser[] = [];
-  errorMessage: string = '';
 
   constructor(private reportingService: ReportingService) {}
 
@@ -19,20 +19,19 @@ export class ReportComponent implements OnInit {
     this.fetchMonthlyUsers();
   }
 
-  fetchMonthlyUsers() {
+  fetchMonthlyUsers(): void {
     this.reportingService.getMonthlyUsers().subscribe(
       (data: MonthlyUser[]) => {
         this.monthlyUsers = data;
         this.initializeChart();
       },
       (error) => {
-        this.errorMessage = error;
         console.error('There was an error!', error);
       }
     );
   }
 
-  initializeChart() {
+  initializeChart(): void {
     const categories = this.monthlyUsers.map(user => user.month);
     const data = this.monthlyUsers.map(user => user.count);
 
