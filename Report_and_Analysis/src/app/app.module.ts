@@ -15,7 +15,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
   imports: [
     BrowserModule,
     HttpClientModule,
-    HighchartsChartModule // Highcharts Angular module
+    HighchartsChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
