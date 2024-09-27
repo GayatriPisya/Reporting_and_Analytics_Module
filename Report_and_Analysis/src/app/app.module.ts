@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { HighchartsChartModule } from 'highcharts-angular';
-
-import { AppComponent } from './app.component';
 import { ReportComponent } from './report/report.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AppComponent } from './app.component';
 import { HistoricalChartComponent } from './historical-chart/historical-chart.component';
-import { ReportingService } from './reporting.service';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [
@@ -17,9 +15,9 @@ import { ReportingService } from './reporting.service';
   imports: [
     BrowserModule,
     HttpClientModule,
-    HighchartsChartModule
+    HighchartsChartModule // Highcharts Angular module
   ],
-  providers: [ReportingService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
