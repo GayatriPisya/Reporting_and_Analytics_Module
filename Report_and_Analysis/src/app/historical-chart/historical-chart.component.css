@@ -1,19 +1,10 @@
+/* src/app/historical-chart/historical-chart.component.css */
 .chart-container {
-    background-color: #f9f9f9; /* Light background for contrast */
-    border-radius: 10px; /* Rounded corners for a softer look */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    padding: 20px; /* Padding around the chart */
-    margin: 20px 0; /* Margin above and below the chart */
-    display: flex; /* Use flexbox for alignment */
-    justify-content: center; /* Center the chart */
-    align-items: center; /* Center the chart vertically */
-  }
-  
-  /* Responsive styling */
-  @media (max-width: 768px) {
-    .chart-container {
-      padding: 15px; /* Reduced padding on smaller screens */
-      margin: 15px 0; /* Reduced margin on smaller screens */
-    }
-  }
-  
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
