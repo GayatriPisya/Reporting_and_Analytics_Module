@@ -12,7 +12,7 @@ export interface MonthlyUser {
 })
 export class ReportingService {
 
-  private apiUrl = 'http://localhost:8080/api/monthly-user'; // Spring Boot endpoint
+  private apiUrl = 'http://localhost:8080/api/monthly-user'; 
 
   constructor(private http: HttpClient) { }
 
