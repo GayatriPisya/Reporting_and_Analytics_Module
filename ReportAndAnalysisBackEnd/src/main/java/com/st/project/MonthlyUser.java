@@ -2,18 +2,32 @@ package com.st.project;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "monthly_users")
+@Table(name = "monthly_user")
 public class MonthlyUser {
 
     @Id
+    @Column(name = "month")
     private String month;
-    private Integer count;
+
+    @Column(name = "count")
+    private int count;
+
+    @Column(name = "year")
+    private int year;
 
     public MonthlyUser() {}
 
+    public MonthlyUser(String month, int count, int year) {
+        this.month = month;
+        this.count = count;
+        this.year = year;
+    }
+
+    // Getters and Setters
     public String getMonth() {
         return month;
     }
@@ -22,11 +36,19 @@ public class MonthlyUser {
         this.month = month;
     }
 
-    public Integer getCount() {
+    public int getCount() {
         return count;
     }
 
-    public void setCount(Integer count) {
+    public void setCount(int count) {
         this.count = count;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 }
