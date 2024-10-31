@@ -1,8 +1,8 @@
 package com.st.project;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
-@Repository
-public interface MonthlyUsersRepository extends JpaRepository<MonthlyUser, String> {
+public interface MonthlyUserRepository extends JpaRepository<MonthlyUser, String> {
+    List<MonthlyUser> findAllByYear(int year);
 }
