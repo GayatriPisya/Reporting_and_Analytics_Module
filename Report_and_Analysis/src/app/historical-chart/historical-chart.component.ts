@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import { ReportingService, MonthlyUser } from '../reporting.service';
+import { ReportingService, MonthlyUser } from '../services/reporting.service';
 
 @Component({
   selector: 'app-historical-chart',
@@ -9,24 +9,29 @@ import { ReportingService, MonthlyUser } from '../reporting.service';
 })
 export class HistoricalChartComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
-  chartOptions: Highcharts.Options = {}; 
-  monthlyUserData: MonthlyUser[] = []; 
-  
+  chartOptions: Highcharts.Options = {};
+  monthlyUserData: MonthlyUser[] = [];
+  selectedYear: number = 2023; 
 
-  totalUsers: number = 0; 
+  // Declare properties for user counts
+  totalUsers: number = 0;
   activeUsers: number = 0; 
-  newUsersThisMonth: number = 0; 
+  newUsersThisMonth: number = 0;
 
-  constructor(private reportingService: ReportingService) { }
+  constructor(private reportingService: ReportingService) {}
 
   ngOnInit(): void {
-    this.reportingService.getMonthlyUsers().subscribe({
-      next: (data: MonthlyUser[]) => {
-        console.log('Data fetched from backend: ', data);
-        this.monthlyUserData = data;
+    this.fetchMonthlyUserData(this.selectedYear);
+  }
 
+  fetchMonthlyUserData(year: number): void {
+    this.reportingService.getMonthlyUsers(year).subscribe({
+      next: (data: MonthlyUser[]) => {
+        this.monthlyUserData = data;
+        this.updateChartOptions();
+
+        // Update the user counts based on fetched data
         this.calculateUserStatistics();
-        this.initializeChart();
       },
       error: (error) => {
         console.error('Error fetching data', error);
@@ -35,40 +40,36 @@ export class HistoricalChartComponent implements OnInit {
   }
 
   calculateUserStatistics(): void {
-    this.totalUsers = this.monthlyUserData.reduce((acc, curr) => acc + curr.count, 0);
+    // Calculate total users
+    this.totalUsers = this.monthlyUserData.reduce((acc, user) => acc + user.count, 0);
 
-    this.activeUsers = Math.floor(Math.random() * this.totalUsers); 
-    this.newUsersThisMonth = Math.floor(Math.random() * 20); 
+    // Calculate active users (you can modify the logic as needed)
+    this.activeUsers = this.monthlyUserData.length > 0 ? this.monthlyUserData.filter(user => user.count > 0).length : 0;
+
+    // Calculate new users for the current month (assuming the current month is in the data)
+    const currentMonth = new Date().toLocaleString('default', { month: 'long' });
+    const currentYear = new Date().getFullYear();
+    const currentMonthData = this.monthlyUserData.find(user => user.month === currentMonth && user.year === currentYear);
+    this.newUsersThisMonth = currentMonthData ? currentMonthData.count : 0;
   }
 
-  initializeChart(): void {
-    const months = this.monthlyUserData.map(item => item.month); 
-    const userCounts = this.monthlyUserData.map(item => item.count); 
+  updateChartOptions(): void {
+    const months = this.monthlyUserData.map(item => item.month);
+    const userCounts = this.monthlyUserData.map(item => item.count);
 
     this.chartOptions = {
-      chart: {
-        type: 'column'
-      },
-      title: {
-        text: 'Monthly User Growth'
-      },
-      xAxis: {
-        categories: months, 
-        title: {
-          text: 'Month'
-        }
-      },
-      yAxis: {
-        min: 0,
-        title: {
-          text: 'Number of Users'
-        }
-      },
-      series: [{
-        name: 'Users',
-        type: 'column',
-        data: userCounts 
-      }]
+      chart: { type: 'line' },  
+      title: { text: 'Monthly User Growth' },
+      xAxis: { categories: months, title: { text: 'Month' } },
+      yAxis: { min: 0, title: { text: 'Number of Users' } },
+      series: [{ name: 'Users', type: 'line', data: userCounts }]  
     };
+  }
+
+  onYearChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const year = parseInt(selectElement.value, 10);
+    this.selectedYear = year;
+    this.fetchMonthlyUserData(this.selectedYear);
   }
 }
