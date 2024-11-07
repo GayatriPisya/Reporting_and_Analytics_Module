@@ -5,18 +5,18 @@ import { Observable } from 'rxjs';
 export interface MonthlyUser {
   month: string;
   count: number;
+  year: number;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReportingService {
+  private baseUrl = 'http://localhost:8080/api'; 
 
-  private apiUrl = 'http://localhost:8080/api/monthly-user'; 
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getMonthlyUsers(): Observable<MonthlyUser[]> {
-    return this.http.get<MonthlyUser[]>(this.apiUrl);
+  getMonthlyUsers(year: number): Observable<MonthlyUser[]> {
+    return this.http.get<MonthlyUser[]>(`${this.baseUrl}/monthly-user/${year}`);
   }
 }
