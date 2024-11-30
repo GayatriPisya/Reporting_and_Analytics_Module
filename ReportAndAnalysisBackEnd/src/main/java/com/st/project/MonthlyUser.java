@@ -1,5 +1,4 @@
-package com.st.project;
-
+package com.report;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -53,4 +52,3 @@ public class MonthlyUser {
         this.year = year;
     }
 }
-
