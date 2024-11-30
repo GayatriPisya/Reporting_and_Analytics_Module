@@ -1,4 +1,4 @@
-package com.st.project;
+package com.report;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
