@@ -1,12 +1,11 @@
-package com.st.project;
+package com.report;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ReportAndAnalysisBackEnd1Application {
-
-	public static void main(String[] args) {
-		SpringApplication.run(ReportAndAnalysisBackEnd1Application.class, args);
-	}
+public class ReportAndAnalysisApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ReportAndAnalysisApplication.class, args);
+    }
 }
